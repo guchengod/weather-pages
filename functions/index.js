@@ -17,7 +17,6 @@ export async function onRequest(context) {
   let cachedResponse = await cache.match(cacheKey);
 
   if (cachedResponse) {
-    
     return cachedResponse;
   }
 
@@ -36,7 +35,6 @@ export async function onRequest(context) {
     }
     const data = await apiResponse.json();
 
-  
     const htmlContent = `
       <!DOCTYPE html>
       <html lang="zh-cn">
@@ -92,7 +90,7 @@ export async function onRequest(context) {
       </head>
       <body>
         <div class="weather-widget">
-          <img class="weather-icon" src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="weather logo">
+          <img class="weather-icon" src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="天气图标">
           <div class="temperature">${Math.round(data.main.temp)}°C</div>
           <div class="details">
             <div class="city-name">${data.name}</div>
@@ -108,11 +106,11 @@ export async function onRequest(context) {
     const newResponse = new Response(htmlContent, {
       headers: {
         'Content-Type': 'text/html;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 's-maxage=600',
+        'Cache-Control': 's-maxage=600', // 缓存 10 分钟
       },
     });
 
+    // 将响应存入缓存
     await cache.put(cacheKey, newResponse.clone());
 
     return newResponse;
