@@ -44,18 +44,23 @@ export async function onRequest(context) {
         <style>
           body {
             font-family: Arial, sans-serif;
-            background: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            background: transparent;
             margin: 0;
+          }
+          html, body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            overflow: hidden;
           }
           .weather-widget {
             display: flex;
             flex-direction: row;
             align-items: center;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 1rem 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
