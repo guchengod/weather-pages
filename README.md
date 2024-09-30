@@ -14,3 +14,7 @@ API_KEY = 123456
 ![我的图片](doc/setting.png)
 
 ## 2. Just keep everything else by default.
+
+# Screenshots
+
+![我的图片](doc/result.png)
